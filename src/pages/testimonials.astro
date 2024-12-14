@@ -1,0 +1,233 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const testimonials = [
+  {
+    name: 'Sarah Johnson',
+    title: 'Small Business Owner',
+    content: 'Mark has been instrumental in helping us set up the right insurance coverage for our employees. His knowledge and attention to detail made the whole process smooth and stress-free.',
+    rating: 5
+  },
+  {
+    name: 'Michael Chen',
+    title: 'Healthcare Professional',
+    content: 'As someone in healthcare, I understand the importance of good insurance coverage. Mark helped me find the perfect supplemental plan that gives me peace of mind.',
+    rating: 5
+  },
+  {
+    name: 'Emily Rodriguez',
+    title: 'Teacher',
+    content: 'I appreciate how Mark took the time to explain everything in detail. He made sure I understood all my options and helped me choose the best plan for my family.',
+    rating: 5
+  },
+  {
+    name: 'David Thompson',
+    title: 'Construction Manager',
+    content: 'The accident insurance Mark recommended has been a lifesaver. When I needed to file a claim, he walked me through the process and made it incredibly easy.',
+    rating: 5
+  }
+];
+---
+
+<Layout title="Testimonials - Mark Mikko Aflac Agent | Redding, CA">
+  <main class="testimonials-page">
+    <section class="hero">
+      <div class="container">
+        <h1>Client Testimonials</h1>
+        <p class="subtitle">What our clients say about working with us</p>
+      </div>
+    </section>
+
+    <section class="content">
+      <div class="container">
+        <div class="testimonials-grid">
+          {testimonials.map(({ name, title, content, rating }) => (
+            <div class="testimonial-card">
+              <div class="rating">
+                {Array(rating).fill('★').map(() => (
+                  <span class="star">★</span>
+                ))}
+              </div>
+              <blockquote>
+                <p>{content}</p>
+                <footer>
+                  <cite>{name}</cite>
+                  <span class="title">{title}</span>
+                </footer>
+              </blockquote>
+            </div>
+          ))}
+        </div>
+
+        <div class="cta-section">
+          <h2>Ready to Experience the Difference?</h2>
+          <p>Join our satisfied clients and get the insurance coverage you deserve.</p>
+          <a href="/contact" class="cta-button">Get Started Today</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .testimonials-page {
+    color: var(--text-dark);
+  }
+
+  .hero {
+    background: linear-gradient(rgba(0, 93, 170, 0.9), rgba(0, 93, 170, 0.9)), url('/hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 4rem 1rem;
+    text-align: center;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  h1 {
+    font-size: 3rem;
+    margin: 0;
+    font-weight: 700;
+  }
+
+  .subtitle {
+    font-size: 1.25rem;
+    margin: 1rem 0 0;
+    opacity: 0.9;
+  }
+
+  .content {
+    padding: 4rem 0;
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+
+  .testimonial-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+  }
+
+  .testimonial-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .rating {
+    margin-bottom: 1rem;
+  }
+
+  .star {
+    color: var(--aflac-yellow);
+    font-size: 1.25rem;
+  }
+
+  blockquote {
+    margin: 0;
+    font-style: italic;
+  }
+
+  blockquote p {
+    margin: 0 0 1.5rem;
+    line-height: 1.6;
+  }
+
+  blockquote footer {
+    font-style: normal;
+  }
+
+  cite {
+    display: block;
+    font-weight: 600;
+    font-style: normal;
+    color: var(--aflac-blue);
+  }
+
+  .title {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-top: 0.25rem;
+  }
+
+  .cta-section {
+    text-align: center;
+    background: var(--background-light);
+    padding: 3rem;
+    border-radius: 8px;
+    margin-top: 4rem;
+  }
+
+  .cta-section h2 {
+    color: var(--aflac-blue);
+    margin: 0 0 1rem;
+  }
+
+  .cta-button {
+    display: inline-block;
+    background: var(--aflac-blue);
+    color: white;
+    padding: 0.85rem 1.75rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    border: 2px solid var(--aflac-blue);
+    margin-top: 1.5rem;
+  }
+
+  .cta-button:hover {
+    background: white;
+    color: var(--aflac-blue);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 93, 170, 0.1);
+  }
+
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    .content {
+      padding: 3rem 0;
+    }
+
+    .testimonials-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .cta-section {
+      padding: 2rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    h1 {
+      font-size: 2rem;
+    }
+
+    .hero {
+      padding: 3rem 1rem;
+    }
+
+    .content {
+      padding: 2rem 0;
+    }
+
+    .testimonial-card {
+      padding: 1.5rem;
+    }
+  }
+</style>

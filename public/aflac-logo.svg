@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="182" viewBox="0 0 800 182" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0 15h170v152H0z" fill="#005DAA"/>
+  <path d="M190 15h610v152H190z" fill="#FFB81C"/>
+  <text x="400" y="120" text-anchor="middle" font-family="Arial Black" font-size="72" fill="#005DAA">AFLAC</text>
+</svg>

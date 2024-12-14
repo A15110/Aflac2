@@ -1,0 +1,313 @@
+---
+import { NAV_LINKS } from '../consts';
+---
+
+<nav class="nav-container">
+  <div class="logo-container">
+    <a href="/" aria-label="Home">
+      <img 
+        src="/logo.png" 
+        alt="Mark Mikko Aflac Insurance"
+        class="aflac-logo"
+        onerror="this.onerror=null; this.src='/aflac-logo.svg'; this.classList.add('fallback-logo');"
+      />
+    </a>
+  </div>
+  
+  <ul class="nav-links desktop-nav">
+    {NAV_LINKS.map(({ href, label, cta }) => (
+      <li>
+        <a 
+          href={href} 
+          class={cta ? 'cta-button' : 'nav-link'}
+          aria-current={Astro.url.pathname === href ? 'page' : undefined}
+        >
+          {label}
+        </a>
+      </li>
+    ))}
+  </ul>
+
+  <button 
+    class="mobile-nav-toggle" 
+    aria-controls="mobile-nav" 
+    aria-expanded="false"
+    aria-label="Toggle navigation menu"
+  >
+    <span class="sr-only">Menu</span>
+    <div class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </button>
+
+  <div class="mobile-nav" id="mobile-nav">
+    <ul class="nav-links">
+      {NAV_LINKS.map(({ href, label, cta }) => (
+        <li>
+          <a 
+            href={href} 
+            class={cta ? 'cta-button' : 'nav-link'}
+            aria-current={Astro.url.pathname === href ? 'page' : undefined}
+          >
+            {label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</nav>
+
+<script>
+  const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+  const mobileNav = document.querySelector('.mobile-nav');
+  const mobileNavLinks = document.querySelectorAll('.mobile-nav .nav-link, .mobile-nav .cta-button');
+
+  if (mobileNavToggle && mobileNav) {
+    const toggleNav = () => {
+      const isExpanded = mobileNavToggle.getAttribute('aria-expanded') === 'true';
+      mobileNavToggle.setAttribute('aria-expanded', (!isExpanded).toString());
+      mobileNav.classList.toggle('active');
+      document.body.classList.toggle('nav-open');
+    };
+
+    // Handle click events
+    mobileNavToggle.addEventListener('click', toggleNav);
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (mobileNav.classList.contains('active') && 
+          !mobileNav.contains(e.target as Node) && 
+          !mobileNavToggle.contains(e.target as Node)) {
+        toggleNav();
+      }
+    });
+
+    // Close menu when clicking a link
+    mobileNavLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (mobileNav.classList.contains('active')) {
+          toggleNav();
+        }
+      });
+    });
+
+    // Handle escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileNav.classList.contains('active')) {
+        toggleNav();
+      }
+    });
+  }
+</script>
+
+<style>
+  .nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    height: 90px;
+  }
+
+  .logo-container {
+    padding: 0.5rem 0;
+    z-index: 1001;
+  }
+
+  .aflac-logo {
+    height: 70px;
+    width: auto;
+    transition: transform 0.2s ease;
+  }
+
+  .aflac-logo:hover {
+    transform: scale(1.05);
+  }
+
+  .fallback-logo {
+    height: 50px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 3rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+  }
+
+  .nav-link {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 600;
+    padding: 0.75rem 0;
+    transition: color 0.2s ease;
+    position: relative;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--aflac-blue);
+    transition: width 0.3s ease;
+  }
+
+  .nav-link:hover::after,
+  .nav-link[aria-current="page"]::after {
+    width: 100%;
+  }
+
+  .cta-button {
+    background: var(--aflac-blue);
+    color: white !important;
+    padding: 0.85rem 1.75rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    border: 2px solid var(--aflac-blue);
+    white-space: nowrap;
+  }
+
+  .cta-button:hover {
+    background: white;
+    color: var(--aflac-blue) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 93, 170, 0.1);
+  }
+
+  /* Mobile Navigation */
+  .mobile-nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    z-index: 1001;
+  }
+
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background: var(--text-dark);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    transform-origin: center;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+
+  .mobile-nav {
+    visibility: hidden;
+    opacity: 0;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    height: 100vh;
+    background: white;
+    padding: 7rem 2rem 2rem;
+    transition: all 0.3s ease;
+    z-index: 999;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 1200px) {
+    .nav-links {
+      gap: 2.5rem;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .nav-links {
+      gap: 2rem;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .desktop-nav {
+      display: none;
+    }
+
+    .mobile-nav-toggle {
+      display: block;
+    }
+
+    .mobile-nav {
+      display: block;
+    }
+
+    .mobile-nav.active {
+      right: 0;
+      visibility: visible;
+      opacity: 1;
+      box-shadow: -4px 0 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .mobile-nav .nav-links {
+      flex-direction: column;
+      gap: 2rem;
+      align-items: center;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.3s ease 0.1s;
+    }
+
+    .mobile-nav.active .nav-links {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .mobile-nav .cta-button {
+      width: 100%;
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+
+    /* Hamburger Animation */
+    .mobile-nav-toggle[aria-expanded="true"] .hamburger span:nth-child(1) {
+      transform: translateY(8px) rotate(45deg) scale(1.1);
+    }
+
+    .mobile-nav-toggle[aria-expanded="true"] .hamburger span:nth-child(2) {
+      opacity: 0;
+      transform: scale(0);
+    }
+
+    .mobile-nav-toggle[aria-expanded="true"] .hamburger span:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg) scale(1.1);
+    }
+  }
+
+  /* Prevent body scroll when nav is open */
+  :global(body.nav-open) {
+    overflow: hidden;
+  }
+</style>

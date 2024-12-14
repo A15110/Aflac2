@@ -1,0 +1,231 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+---
+
+<Layout title="About Mark Mikko - Aflac Insurance Agent | Redding, CA">
+  <main class="about-page">
+    <section class="hero">
+      <div class="container">
+        <h1>About Mark Mikko</h1>
+        <p class="subtitle">Your Dedicated Aflac Insurance Agent in Redding, CA</p>
+      </div>
+    </section>
+
+    <section class="content">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-text">
+            <h2>Your Local Insurance Expert</h2>
+            <p>With years of experience in the insurance industry, I am committed to helping individuals and businesses in Redding and surrounding areas find the right supplemental insurance coverage for their needs.</p>
+            
+            <h3>Why Choose Me as Your Agent?</h3>
+            <ul>
+              <li>Personalized service and attention to your unique needs</li>
+              <li>Deep understanding of Aflac's insurance products</li>
+              <li>Quick response times and dedicated support</li>
+              <li>Regular policy reviews and updates</li>
+            </ul>
+
+            <h3>Professional Background</h3>
+            <p>As a licensed insurance agent (CA License #0809825), I have helped countless clients navigate their insurance options and find the perfect coverage for their situation.</p>
+          </div>
+
+          <div class="contact-card">
+            <h3>Get in Touch</h3>
+            <address>
+              <p><strong>Office Location:</strong><br>
+              1415 Victor Av.<br>
+              Suite 8<br>
+              Redding, CA 96003</p>
+              
+              <p><strong>Contact Details:</strong><br>
+              Cell: <a href="tel:5309457035">530.945.7035</a><br>
+              Fax: 530.215.3141<br>
+              Email: <a href="mailto:mark_mikko@us.aflac.com">mark_mikko@us.aflac.com</a></p>
+              
+              <p><strong>License Information:</strong><br>
+              CA Insurance License #0809825</p>
+            </address>
+            <a href="/contact" class="cta-button">Schedule a Consultation</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .about-page {
+    color: var(--text-dark);
+  }
+
+  .hero {
+    background: linear-gradient(rgba(0, 93, 170, 0.9), rgba(0, 93, 170, 0.9)), url('/hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 4rem 1rem;
+    text-align: center;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  h1 {
+    font-size: 3rem;
+    margin: 0;
+    font-weight: 700;
+  }
+
+  .subtitle {
+    font-size: 1.25rem;
+    margin: 1rem 0 0;
+    opacity: 0.9;
+  }
+
+  .content {
+    padding: 4rem 0;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .about-text h2 {
+    color: var(--aflac-blue);
+    margin: 0 0 1.5rem;
+  }
+
+  .about-text h3 {
+    color: var(--aflac-blue);
+    margin: 2rem 0 1rem;
+  }
+
+  .about-text p {
+    line-height: 1.6;
+    margin: 0 0 1.5rem;
+  }
+
+  .about-text ul {
+    padding-left: 1.5rem;
+    margin: 1rem 0;
+  }
+
+  .about-text li {
+    margin: 0.5rem 0;
+    line-height: 1.6;
+  }
+
+  .contact-card {
+    background: var(--background-light);
+    padding: 2rem;
+    padding-bottom: 2.5rem;
+    border-radius: 8px;
+    position: sticky;
+    top: 100px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contact-card h3 {
+    color: var(--aflac-blue);
+    margin: 0 0 1.5rem;
+  }
+
+  .contact-card address {
+    font-style: normal;
+    line-height: 1.6;
+  }
+
+  .contact-card p {
+    margin: 0 0 1.5rem;
+  }
+  
+  .contact-card .cta-button {
+    margin-top: auto;
+    width: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .contact-card a {
+    color: var(--aflac-blue);
+    text-decoration: none;
+  }
+
+  .contact-card a:hover {
+    text-decoration: underline;
+  }
+
+  .cta-button {
+    display: inline-block;
+    background: var(--aflac-blue);
+    color: white !important;
+    padding: 0.85rem 1.75rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    border: 2px solid var(--aflac-blue);
+    max-width: 100%;
+    box-sizing: border-box;
+    white-space: normal;
+    line-height: 1.4;
+    text-align: center;
+    margin-top: 1rem;
+  }
+
+  .cta-button:hover {
+    background: white;
+    color: var(--aflac-blue) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 93, 170, 0.1);
+  }
+
+  @media (max-width: 1024px) {
+    .about-grid {
+      gap: 3rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    .content {
+      padding: 3rem 0;
+    }
+
+    .about-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .contact-card {
+      position: static;
+    }
+  }
+
+  @media (max-width: 480px) {
+    h1 {
+      font-size: 2rem;
+    }
+
+    .hero {
+      padding: 3rem 1rem;
+    }
+
+    .content {
+      padding: 2rem 0;
+    }
+  }
+</style>

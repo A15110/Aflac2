@@ -1,0 +1,256 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const faqs = [
+  {
+    question: 'What is supplemental insurance?',
+    answer: 'Supplemental insurance is additional coverage that helps pay for expenses that your primary insurance doesn't cover. It can help with deductibles, copayments, and other out-of-pocket costs.'
+  },
+  {
+    question: 'How quickly are claims processed?',
+    answer: 'Most Aflac claims are processed within 1-4 business days when submitted online through SmartClaim®. We pride ourselves on fast, efficient claims processing to get you the help you need quickly.'
+  },
+  {
+    question: 'Can I keep my Aflac policy if I change jobs?',
+    answer: 'Yes! Most Aflac policies are portable, meaning you can keep your coverage even if you change jobs or retire. Your premium rates won't increase because you leave your employer.'
+  },
+  {
+    question: 'How do I file a claim?',
+    answer: 'Claims can be filed online through Aflac SmartClaim®, by fax, or by mail. As your agent, I'm here to help guide you through the claims process and ensure everything is submitted correctly.'
+  },
+  {
+    question: 'Are pre-existing conditions covered?',
+    answer: 'Coverage for pre-existing conditions varies by policy type. During our consultation, we can discuss specific policy details and waiting periods that may apply to your situation.'
+  },
+  {
+    question: 'How are benefits paid?',
+    answer: 'Aflac pays cash benefits directly to you (unless otherwise assigned) to use as you see fit. This means you can use the money for any purpose, whether it's medical bills, rent, groceries, or other expenses.'
+  }
+];
+---
+
+<Layout title="FAQ - Mark Mikko Aflac Agent | Redding, CA">
+  <main class="faq-page">
+    <section class="hero">
+      <div class="container">
+        <h1>Frequently Asked Questions</h1>
+        <p class="subtitle">Find answers to common questions about Aflac insurance</p>
+      </div>
+    </section>
+
+    <section class="content">
+      <div class="container">
+        <div class="faq-grid">
+          <div class="faq-list">
+            {faqs.map(({ question, answer }) => (
+              <details class="faq-item">
+                <summary>{question}</summary>
+                <p>{answer}</p>
+              </details>
+            ))}
+          </div>
+
+          <div class="contact-card">
+            <h3>Still Have Questions?</h3>
+            <p>I'm here to help! Contact me directly for personalized assistance.</p>
+            
+            <div class="contact-info">
+              <p><strong>Call or Text:</strong><br>
+              <a href="tel:5309457035">530.945.7035</a></p>
+              
+              <p><strong>Email:</strong><br>
+              <a href="mailto:mark_mikko@us.aflac.com">mark_mikko@us.aflac.com</a></p>
+            </div>
+            
+            <a href="/contact" class="cta-button">Schedule a Consultation</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .faq-page {
+    color: var(--text-dark);
+  }
+
+  .hero {
+    background: linear-gradient(rgba(0, 93, 170, 0.9), rgba(0, 93, 170, 0.9)), url('/hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 4rem 1rem;
+    text-align: center;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  h1 {
+    font-size: 3rem;
+    margin: 0;
+    font-weight: 700;
+  }
+
+  .subtitle {
+    font-size: 1.25rem;
+    margin: 1rem 0 0;
+    opacity: 0.9;
+  }
+
+  .content {
+    padding: 4rem 0;
+  }
+
+  .faq-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .faq-item {
+    background: white;
+    border: 1px solid rgba(0, 93, 170, 0.1);
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    transition: all 0.2s ease;
+  }
+
+  .faq-item:hover {
+    border-color: var(--aflac-blue);
+  }
+
+  .faq-item summary {
+    padding: 1.5rem;
+    cursor: pointer;
+    font-weight: 600;
+    list-style: none;
+    position: relative;
+    padding-right: 3rem;
+  }
+
+  .faq-item summary::after {
+    content: '+';
+    position: absolute;
+    right: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    color: var(--aflac-blue);
+    transition: transform 0.2s ease;
+  }
+
+  .faq-item[open] summary::after {
+    transform: translateY(-50%) rotate(45deg);
+  }
+
+  .faq-item p {
+    padding: 0 1.5rem 1.5rem;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .contact-card {
+    background: var(--background-light);
+    padding: 2rem;
+    border-radius: 8px;
+    position: sticky;
+    top: 100px;
+  }
+
+  .contact-card h3 {
+    color: var(--aflac-blue);
+    margin: 0 0 1rem;
+  }
+
+  .contact-info {
+    margin: 1.5rem 0;
+  }
+
+  .contact-info p {
+    margin: 0 0 1rem;
+  }
+
+  .contact-card a {
+    color: var(--aflac-blue);
+    text-decoration: none;
+  }
+
+  .contact-card a:hover {
+    text-decoration: underline;
+  }
+
+  .cta-button {
+    display: inline-block;
+    background: var(--aflac-blue);
+    color: white;
+    padding: 0.85rem 1.75rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    border: 2px solid var(--aflac-blue);
+    text-align: center;
+    width: 100%;
+  }
+
+  .cta-button:hover {
+    background: white;
+    color: var(--aflac-blue);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 93, 170, 0.1);
+  }
+
+  @media (max-width: 1024px) {
+    .faq-grid {
+      gap: 3rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    .content {
+      padding: 3rem 0;
+    }
+
+    .faq-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .contact-card {
+      position: static;
+    }
+  }
+
+  @media (max-width: 480px) {
+    h1 {
+      font-size: 2rem;
+    }
+
+    .hero {
+      padding: 3rem 1rem;
+    }
+
+    .content {
+      padding: 2rem 0;
+    }
+
+    .faq-item summary {
+      padding: 1.25rem;
+      padding-right: 2.5rem;
+    }
+
+    .faq-item p {
+      padding: 0 1.25rem 1.25rem;
+    }
+  }
+</style>

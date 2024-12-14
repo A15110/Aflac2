@@ -1,0 +1,273 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+
+const plans = [
+  {
+    title: 'Accident Insurance',
+    description:"Protection for life's unexpected accidents and injuries.",
+    benefits: [
+      'Cash benefits paid directly to you',
+      'Coverage for the whole family',
+      'No deductibles or copayments',
+      '24/7 coverage on and off the job'
+    ],
+    href: '/plans/accident'
+  },
+  {
+    title: 'Cancer Insurance',
+    description: 'Additional financial support during cancer treatment.',
+    benefits: [
+      'Helps with out-of-pocket medical costs',
+      'Coverage for various cancer treatments',
+      'Wellness benefit included',
+      'Guaranteed renewable for life'
+    ],
+    href: '/plans/cancer'
+  },
+  {
+    title: 'Short-Term Disability',
+    description: "Income protection when you can't work.",
+    benefits: [
+      'Replace portion of lost income',
+      'Flexible benefit amounts',
+      'Quick claim processing',
+      'Portable coverage'
+    ],
+    href: '/plans/disability'
+  },
+  {
+    title: 'Hospital Insurance',
+    description: 'Help with expenses during hospital stays.',
+    benefits: [
+      'Coverage for hospital admission',
+      'Daily hospital confinement benefits',
+      'Intensive care unit coverage',
+      'Emergency room benefits'
+    ],
+    href: '/plans/hospital'
+  }
+];
+---
+
+<Layout title="Insurance Plans - Mark Mikko Aflac Agent | Redding, CA">
+  <main class="plans-page">
+    <section class="hero">
+      <div class="container">
+        <h1>Insurance Plans</h1>
+        <p class="subtitle">Comprehensive Coverage Options for You and Your Family</p>
+      </div>
+    </section>
+
+    <section class="content">
+      <div class="container">
+        <div class="plans-intro">
+          <h2>Available Insurance Plans</h2>
+          <p>Choose from our wide range of supplemental insurance plans designed to provide additional protection when you need it most.</p>
+        </div>
+
+        <div class="plans-grid">
+          {plans.map(plan => (
+            <div class="plan-card">
+              <h3>{plan.title}</h3>
+              <p class="plan-description">{plan.description}</p>
+              <ul class="benefits-list">
+                {plan.benefits.map(benefit => (
+                  <li>{benefit}</li>
+                ))}
+              </ul>
+              <a href={plan.href} class="learn-more">Learn More →</a>
+            </div>
+          ))}
+        </div>
+
+        <div class="cta-section">
+          <h2>Need Help Choosing?</h2>
+          <p>Let's discuss which plans best fit your needs and budget.</p>
+          <a href="/contact" class="cta-button">Schedule a Consultation</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .plans-page {
+    color: var(--text-dark);
+  }
+
+  .hero {
+    background: linear-gradient(rgba(0, 93, 170, 0.9), rgba(0, 93, 170, 0.9)), url('/hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 4rem 1rem;
+    text-align: center;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  h1 {
+    font-size: 3rem;
+    margin: 0;
+    font-weight: 700;
+  }
+
+  .subtitle {
+    font-size: 1.25rem;
+    margin: 1rem 0 0;
+    opacity: 0.9;
+  }
+
+  .content {
+    padding: 4rem 0;
+  }
+
+  .plans-intro {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+  }
+
+  .plans-intro h2 {
+    color: var(--aflac-blue);
+    margin: 0 0 1rem;
+  }
+
+  .plans-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+
+  .plan-card {
+    background: var(--background-light);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .plan-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .plan-card h3 {
+    color: var(--aflac-blue);
+    margin: 0 0 1rem;
+  }
+
+  .plan-description {
+    margin: 0 0 1.5rem;
+    line-height: 1.6;
+  }
+
+  .benefits-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 auto;
+  }
+
+  .benefits-list li {
+    padding-left: 1.5rem;
+    position: relative;
+    margin: 0.5rem 0;
+    line-height: 1.4;
+  }
+
+  .benefits-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--aflac-blue);
+  }
+
+  .learn-more {
+    display: inline-block;
+    color: var(--aflac-blue);
+    margin-top: 1.5rem;
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 0.2s ease;
+  }
+
+  .learn-more:hover {
+    transform: translateX(4px);
+  }
+
+  .cta-section {
+    text-align: center;
+    background: var(--background-light);
+    padding: 3rem;
+    border-radius: 8px;
+    margin-top: 4rem;
+  }
+
+  .cta-section h2 {
+    color: var(--aflac-blue);
+    margin: 0 0 1rem;
+  }
+
+  .cta-button {
+    display: inline-block;
+    background: var(--aflac-blue);
+    color: white !important;
+    padding: 0.85rem 1.75rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    border: 2px solid var(--aflac-blue);
+    margin-top: 1.5rem;
+    box-sizing: border-box;
+    white-space: normal;
+    line-height: 1.4;
+    text-align: center;
+  }
+
+  .cta-button:hover {
+    background: white;
+    color: var(--aflac-blue) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 93, 170, 0.1);
+  }
+
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    .content {
+      padding: 3rem 0;
+    }
+
+    .plans-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .cta-section {
+      padding: 2rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    h1 {
+      font-size: 2rem;
+    }
+
+    .hero {
+      padding: 3rem 1rem;
+    }
+
+    .content {
+      padding: 2rem 0;
+    }
+  }
+</style>

@@ -1,0 +1,74 @@
+---
+import { CONTACT, NAV_LINKS, SITE } from '../consts';
+---
+
+<footer class="main-footer">
+  <div class="footer-content">
+    <div class="footer-contact">
+      <h3>Contact Information</h3>
+      <address>
+        {CONTACT.address.street}<br />
+        {CONTACT.address.suite}<br />
+        {CONTACT.address.city} {CONTACT.address.state} {CONTACT.address.zip}<br />
+        <br />
+        {CONTACT.license}<br />
+        Cell: <a href={`tel:${CONTACT.phone.replace(/\D/g, '')}`}>{CONTACT.phone}</a><br />
+        Fax: {CONTACT.fax}<br />
+        Email: <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
+      </address>
+    </div>
+    <div class="footer-nav">
+      <h3>Quick Links</h3>
+      <ul>
+        {NAV_LINKS.filter(link => !link.cta).map(({ href, label }) => (
+          <li><a href={href}>{label}</a></li>
+        ))}
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; {new Date().getFullYear()} Mark Mikko - Aflac Insurance Agent. All rights reserved.</p>
+  </div>
+</footer>
+
+<style>
+  .main-footer {
+    background: var(--aflac-blue);
+    color: white;
+    padding: 3rem 0 1rem;
+    margin-top: 4rem;
+  }
+  .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+  .footer-contact address {
+    font-style: normal;
+    line-height: 1.6;
+  }
+  .footer-contact a {
+    color: white;
+    text-decoration: none;
+  }
+  .footer-nav ul {
+    list-style: none;
+    padding: 0;
+  }
+  .footer-nav a {
+    color: white;
+    text-decoration: none;
+    line-height: 2;
+  }
+  .footer-bottom {
+    max-width: 1200px;
+    margin: 2rem auto 0;
+    padding: 1rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    text-align: center;
+    font-size: 0.9rem;
+  }
+</style>

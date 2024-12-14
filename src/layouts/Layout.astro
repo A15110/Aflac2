@@ -1,0 +1,73 @@
+---
+import { SITE } from '../consts';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const { title, description = SITE.description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="any" />
+		<meta name="generator" content={Astro.generator} />
+		<link rel="canonical" href={`${SITE.baseUrl}${Astro.url.pathname}`} />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+		<title>{title}</title>
+		
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={`${SITE.baseUrl}${Astro.url.pathname}`} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content={`${SITE.baseUrl}${Astro.url.pathname}`} />
+		<meta property="twitter:title" content={title} />
+		<meta property="twitter:description" content={description} />
+	</head>
+	<body>
+		<header class="main-header">
+			<Navigation />
+		</header>
+		<slot />
+		<Footer />
+	</body>
+</html>
+<style is:global>
+	:root {
+		--aflac-blue: #005DAA;
+		--aflac-yellow: #FFB81C;
+		--text-dark: #333333;
+		--text-light: #666666;
+		--background-light: #f5f5f5;
+	}
+	html {
+		font-family: 'Open Sans', sans-serif;
+		background: white;
+		color: var(--text-dark);
+	}
+	body {
+		margin: 0;
+		padding: 0;
+	}
+	.main-header {
+		background: white;
+		box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+		padding: 1.25rem 0;
+		position: sticky;
+		top: 0;
+		z-index: 100;
+	}
+</style>
